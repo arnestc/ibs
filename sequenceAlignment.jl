@@ -33,20 +33,20 @@ function sequenceDownload(sequence)
 end
 
 """
-    hammington(x,y)
+    hamming(x,y)
 
-Compute the Hammington distance between two same length sequences `x` and `y`.
-The Hammington distance between to equal length sequences simply counts the number of minima substitutions of characters needed to transform one sequence into the other.
+Compute the Hamming distance between two same length sequences `x` and `y`.
+The Hamming distance between to equal length sequences simply counts the number of minima substitutions of characters needed to transform one sequence into the other.
 
 # Example
 ```julia-repl
 julia> x = "wheeaaa"
 julia> y = "ghearpa"
-julia> d = hammington(x,y)
+julia> d = hamming(x,y)
 4
 ```
 """
-function hammington(x,y)
+function hamming(x,y)
     # x, y sequences
     if length(x) != length(y)
         # Sequences must have equal lenghts
