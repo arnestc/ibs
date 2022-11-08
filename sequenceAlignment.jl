@@ -29,7 +29,7 @@ function sequenceDownload(sequence)
         write(f,fastaString)
     end
 
-    return FastaIO.readfasta(seqFile)[1][2]
+    return FastaIO.readfasta(sequenceFile)[1][2]
 end
 
 """
