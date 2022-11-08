@@ -62,3 +62,28 @@ function hamming(x,y)
         return d
     end
 end
+
+"""
+    leven(x,y)
+
+Compute the Levenshtein distance between two sequences `x` and `y` (also if they have different lengtsh) in a recursive way (https://wikimedia.org/api/rest_v1/media/math/render/svg/70962a722b0b682e398f0ee77d60c714a441c54e) throughout the use of a Dictionary data structure.
+# Example
+```julia-repl
+julia> x = "wheeaaa"
+julia> y = "ghearpa"
+julia> d = lev(x,y)
+4
+```
+"""
+function leven(x,y)
+    D = Dict() # Dict data struct used to implement recursive approach
+
+    function levenshtein(x,y)
+        isempty(x) && return length(y) # Base case 1
+        isempty(y) && return length(x) # Base case 2
+        haskey(D,(x,y)) && return D[(x,y)] # Base case 3 (residues comparison already computed, then no need to compute it again)
+        D[(x,y)] = min(1 - (x[end] == y[end]) + levenshtein(x[1:end-1],y[1:end-1]), 1 + levenshtein(x[1:end-1],y), 1 + levenshtein(x,y[1:end-1]))
+    end
+
+    levenshtein(x,y)
+end
